@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>CuidaBem - Dashboard do Cuidador</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+
+<header class="header">
+
+    <div class="logo">
+        <span>♥</span> CuidaBem
+    </div>
+
+
+    <nav class="menu">
+
+        <a href="index.html">
+            Início
+        </a>
+
+        <a href="idoso.html">
+            Idoso
+        </a>
+
+        <a href="cuidador.html" class="ativo">
+            Cuidador
+        </a>
+
+        <a href="consultas.html">
+            Consultas
+        </a>
+
+        <a href="medicamentos.html">
+            Medicamentos
+        </a>
+
+    </nav>
+
+</header>
+
+
+
+<main class="dashboard">
+
+
+    <!-- CABEÇALHO -->
+
+    <section class="dashboard-top">
+
+        <div>
+
+            <span class="tag">
+                Área do Cuidador
+            </span>
+
+
+            <h1>
+                Olá, Maria! 👋
+            </h1>
+
+
+            <p>
+                Acompanhe a rotina e os cuidados de Francisco.
+            </p>
+
+        </div>
+
+
+        <div class="data-atual">
+
+            <span>
+                Hoje
+            </span>
+
+            <strong>
+                26 de agosto
+            </strong>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- RESUMO -->
+
+    <section class="resumo-grid">
+
+
+        <div class="resumo-card azul">
+
+            <div class="resumo-icone">
+                👴
+            </div>
+
+            <div>
+
+                <span>
+                    Idoso acompanhado
+                </span>
+
+                <strong>
+                    Francisco
+                </strong>
+
+                <small>
+                    67 anos
+                </small>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="resumo-card verde">
+
+            <div class="resumo-icone">
+                💊
+            </div>
+
+            <div>
+
+                <span>
+                    Medicamentos
+                </span>
+
+                <strong>
+                    3 hoje
+                </strong>
+
+                <small>
+                    1 pendente
+                </small>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="resumo-card roxo">
+
+            <div class="resumo-icone">
+                📅
+            </div>
+
+            <div>
+
+                <span>
+                    Próxima consulta
+                </span>
+
+                <strong>
+                    28 Ago
+                </strong>
+
+                <small>
+                    Cardiologista
+                </small>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- CONTEÚDO -->
+
+    <section class="dashboard-grid">
+
+
+        <!-- MEDICAMENTOS -->
+
+        <div class="painel">
+
+
+            <div class="painel-header">
+
+                <div>
+
+                    <h2>
+                        Medicamentos
+                    </h2>
+
+                    <p>
+                        Acompanhe os medicamentos de hoje.
+                    </p>
+
+                </div>
+
+
+                <a href="medicamentos.html">
+                    Ver todos
+                </a>
+
+            </div>
+
+
+
+            <div class="medicamento-item">
+
+                <div class="item-icone">
+                    💊
+                </div>
+
+
+                <div class="item-info">
+
+                    <strong>
+                        Losartana
+                    </strong>
+
+                    <span>
+                        50 mg
+                    </span>
+
+                </div>
+
+
+                <div class="item-horario">
+
+                    <strong>
+                        08:00
+                    </strong>
+
+                    <span>
+                        Manhã
+                    </span>
+
+                </div>
+
+
+                <span class="status-label tomado">
+                    ✓ Tomado
+                </span>
+
+            </div>
+
+
+
+            <div class="medicamento-item">
+
+                <div class="item-icone">
+                    💊
+                </div>
+
+
+                <div class="item-info">
+
+                    <strong>
+                        Metformina
+                    </strong>
+
+                    <span>
+                        500 mg
+                    </span>
+
+                </div>
+
+
+                <div class="item-horario">
+
+                    <strong>
+                        12:00
+                    </strong>
+
+                    <span>
+                        Almoço
+                    </span>
+
+                </div>
+
+
+                <span class="status-label pendente">
+                    ! Pendente
+                </span>
+
+            </div>
+
+
+
+            <div class="medicamento-item">
+
+                <div class="item-icone">
+                    💊
+                </div>
+
+
+                <div class="item-info">
+
+                    <strong>
+                        Sinvastatina
+                    </strong>
+
+                    <span>
+                        20 mg
+                    </span>
+
+                </div>
+
+
+                <div class="item-horario">
+
+                    <strong>
+                        20:00
+                    </strong>
+
+                    <span>
+                        Noite
+                    </span>
+
+                </div>
+
+
+                <span class="status-label pendente">
+                    ! Pendente
+                </span>
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- ALERTAS -->
+
+        <div class="painel">
+
+
+            <div class="painel-header">
+
+                <div>
+
+                    <h2>
+                        Atenção
+                    </h2>
+
+                    <p>
+                        Informações importantes.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="alerta alerta-amarelo">
+
+                <div class="alerta-icone">
+                    ⚠️
+                </div>
+
+                <div>
+
+                    <strong>
+                        Medicamento pendente
+                    </strong>
+
+                    <p>
+                        Metformina das 12:00 ainda não foi marcada como tomada.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="alerta alerta-azul">
+
+                <div class="alerta-icone">
+                    📅
+                </div>
+
+                <div>
+
+                    <strong>
+                        Consulta próxima
+                    </strong>
+
+                    <p>
+                        Francisco possui consulta com cardiologista no dia 28 de agosto.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <a
+                href="consultas.html"
+                class="botao principal botao-largo">
+
+                Ver agenda
+
+            </a>
+
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- ROTINA -->
+
+    <section class="acesso-rapido">
+
+
+        <div class="titulo-dashboard">
+
+            <h2>
+                Acesso rápido
+            </h2>
+
+            <p>
+                Gerencie os principais cuidados.
+            </p>
+
+        </div>
+
+
+
+        <div class="acoes-grid">
+
+
+            <a href="medicamentos.html"
+               class="acao-card">
+
+                <span>
+                    💊
+                </span>
+
+                <div>
+
+                    <strong>
+                        Medicamentos
+                    </strong>
+
+                    <small>
+                        Gerenciar horários
+                    </small>
+
+                </div>
+
+                <b>
+                    →
+                </b>
+
+            </a>
+
+
+
+            <a href="consultas.html"
+               class="acao-card">
+
+                <span>
+                    📅
+                </span>
+
+                <div>
+
+                    <strong>
+                        Consultas
+                    </strong>
+
+                    <small>
+                        Gerenciar agenda
+                    </small>
+
+                </div>
+
+                <b>
+                    →
+                </b>
+
+            </a>
+
+
+
+            <a href="idoso.html"
+               class="acao-card">
+
+                <span>
+                    👴
+                </span>
+
+                <div>
+
+                    <strong>
+                        Perfil do idoso
+                    </strong>
+
+                    <small>
+                        Ver informações
+                    </small>
+
+                </div>
+
+                <b>
+                    →
+                </b>
+
+            </a>
+
+
+        </div>
+
+    </section>
+
+
+</main>
+
+
+
+<footer class="footer">
+
+    <div class="logo">
+
+        <span>♥</span>
+        Mediplanner
+
+    </div>
+
+
+    <p>
+        Seu cuidado em um só lugar.
+    </p>
+
+</footer>
+
+
+
+<script src="script.js"></script>
+
+</body>
+
+</html>

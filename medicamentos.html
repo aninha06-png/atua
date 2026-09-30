@@ -1,0 +1,1262 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Medicamentos</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: #f4f7fb;
+      color: #1f2937;
+      padding: 24px;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 25px;
+      gap: 15px;
+    }
+
+    header h1 {
+      font-size: 30px;
+      color: #111827;
+    }
+
+    header p {
+      color: #6b7280;
+      margin-top: 5px;
+    }
+
+    .btn {
+      border: none;
+      border-radius: 10px;
+      padding: 12px 18px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: .2s;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+    }
+
+    .btn-primary {
+      background: #2563eb;
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: #1d4ed8;
+    }
+
+    .btn-secondary {
+      background: #e5e7eb;
+      color: #374151;
+    }
+
+    .btn-danger {
+      background: #fee2e2;
+      color: #dc2626;
+    }
+
+    /* RESUMO */
+
+    .summary {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-bottom: 25px;
+    }
+
+    .summary-card {
+      background: white;
+      border-radius: 14px;
+      padding: 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,.05);
+    }
+
+    .summary-card .icon {
+      font-size: 25px;
+      margin-bottom: 10px;
+    }
+
+    .summary-card .number {
+      font-size: 27px;
+      font-weight: bold;
+    }
+
+    .summary-card .label {
+      color: #6b7280;
+      font-size: 14px;
+      margin-top: 4px;
+    }
+
+    /* CADASTRO */
+
+    .form-card {
+      background: white;
+      border-radius: 14px;
+      padding: 24px;
+      margin-bottom: 25px;
+      box-shadow: 0 2px 8px rgba(0,0,0,.05);
+    }
+
+    .form-card h2 {
+      margin-bottom: 20px;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 16px;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+
+    .field label {
+      font-size: 14px;
+      font-weight: bold;
+      color: #374151;
+    }
+
+    .field input,
+    .field select,
+    .field textarea {
+      width: 100%;
+      border: 1px solid #d1d5db;
+      border-radius: 9px;
+      padding: 12px;
+      outline: none;
+      font-size: 15px;
+    }
+
+    .field input:focus,
+    .field select:focus,
+    .field textarea:focus {
+      border-color: #2563eb;
+    }
+
+    .field textarea {
+      resize: vertical;
+      min-height: 80px;
+    }
+
+    .full {
+      grid-column: 1 / -1;
+    }
+
+    .horarios-box {
+      margin-top: 20px;
+    }
+
+    .horarios-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+
+    .horarios-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .horario-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      padding: 7px 10px;
+      border-radius: 9px;
+    }
+
+    .horario-item input {
+      border: none;
+      background: transparent;
+      font-weight: bold;
+    }
+
+    .remove-horario {
+      border: none;
+      background: transparent;
+      color: #dc2626;
+      cursor: pointer;
+      font-size: 18px;
+    }
+
+    .form-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    /* DIAS */
+
+    .dias {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .dia {
+      border: 1px solid #d1d5db;
+      background: white;
+      padding: 9px 13px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: bold;
+    }
+
+    .dia.active {
+      background: #2563eb;
+      color: white;
+      border-color: #2563eb;
+    }
+
+    /* LISTA */
+
+    .section-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+
+    .medicamentos-list {
+      display: grid;
+      gap: 16px;
+    }
+
+    .med-card {
+      background: white;
+      border-radius: 14px;
+      padding: 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,.05);
+    }
+
+    .med-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 15px;
+    }
+
+    .med-info h3 {
+      font-size: 20px;
+      margin-bottom: 5px;
+    }
+
+    .med-info p {
+      color: #6b7280;
+      font-size: 14px;
+    }
+
+    .med-actions {
+      display: flex;
+      gap: 8px;
+    }
+
+    .icon-btn {
+      border: none;
+      background: #f3f4f6;
+      padding: 8px 11px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .icon-btn:hover {
+      background: #e5e7eb;
+    }
+
+    .dose-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .dose {
+      border: 1px solid #e5e7eb;
+      border-radius: 10px;
+      padding: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .dose-info strong {
+      display: block;
+      font-size: 17px;
+    }
+
+    .dose-info span {
+      color: #6b7280;
+      font-size: 13px;
+    }
+
+    .status-btn {
+      border: none;
+      border-radius: 8px;
+      padding: 8px 12px;
+      cursor: pointer;
+      font-weight: bold;
+      white-space: nowrap;
+    }
+
+    .status-pendente {
+      background: #fef3c7;
+      color: #92400e;
+    }
+
+    .status-tomado {
+      background: #dcfce7;
+      color: #166534;
+    }
+
+    .empty {
+      background: white;
+      padding: 45px 20px;
+      border-radius: 14px;
+      text-align: center;
+      color: #6b7280;
+    }
+
+    .empty .emoji {
+      font-size: 45px;
+      margin-bottom: 10px;
+    }
+
+    @media (max-width: 800px) {
+      body {
+        padding: 15px;
+      }
+
+      header {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .summary {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .full {
+        grid-column: auto;
+      }
+
+      .med-top {
+        flex-direction: column;
+      }
+
+      .med-actions {
+        width: 100%;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .summary {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .summary-card {
+        padding: 15px;
+      }
+
+      .summary-card .number {
+        font-size: 22px;
+      }
+
+      .dose-list {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <header>
+    <div>
+      <h1>💊 Medicamentos</h1>
+      <p>Gerencie seus medicamentos e horários</p>
+    </div>
+
+    <button class="btn btn-primary" onclick="novoMedicamento()">
+      + Cadastrar medicamento
+    </button>
+  </header>
+
+
+  <!-- RESUMO -->
+
+  <section class="summary">
+
+    <div class="summary-card">
+      <div class="icon">💊</div>
+      <div class="number" id="totalMedicamentos">0</div>
+      <div class="label">Medicamentos</div>
+    </div>
+
+    <div class="summary-card">
+      <div class="icon">⏰</div>
+      <div class="number" id="proximoHorario">--:--</div>
+      <div class="label">Próximo horário</div>
+    </div>
+
+    <div class="summary-card">
+      <div class="icon">✅</div>
+      <div class="number" id="totalTomados">0</div>
+      <div class="label">Tomados hoje</div>
+    </div>
+
+    <div class="summary-card">
+      <div class="icon">⏳</div>
+      <div class="number" id="totalPendentes">0</div>
+      <div class="label">Pendentes hoje</div>
+    </div>
+
+  </section>
+
+
+  <!-- FORMULÁRIO -->
+
+  <section class="form-card" id="formCard">
+
+    <h2 id="formTitulo">Cadastrar medicamento</h2>
+
+    <form id="medForm">
+
+      <div class="form-grid">
+
+        <div class="field">
+          <label>Nome do medicamento *</label>
+          <input
+            type="text"
+            id="nome"
+            placeholder="Ex.: Losartana"
+            required
+          >
+        </div>
+
+        <div class="field">
+          <label>Dosagem</label>
+          <input
+            type="text"
+            id="dosagem"
+            placeholder="Ex.: 50 mg"
+          >
+        </div>
+
+        <div class="field">
+          <label>Forma</label>
+          <select id="forma">
+            <option value="Comprimido">Comprimido</option>
+            <option value="Cápsula">Cápsula</option>
+            <option value="Gotas">Gotas</option>
+            <option value="Xarope">Xarope</option>
+            <option value="Injeção">Injeção</option>
+            <option value="Outro">Outro</option>
+          </select>
+        </div>
+
+        <div class="field full">
+          <label>Observação</label>
+          <textarea
+            id="observacao"
+            placeholder="Ex.: tomar após o almoço"
+          ></textarea>
+        </div>
+
+        <div class="field full">
+          <label>Dias da semana</label>
+
+          <div class="dias">
+            <button type="button" class="dia active" data-dia="0">Dom</button>
+            <button type="button" class="dia active" data-dia="1">Seg</button>
+            <button type="button" class="dia active" data-dia="2">Ter</button>
+            <button type="button" class="dia active" data-dia="3">Qua</button>
+            <button type="button" class="dia active" data-dia="4">Qui</button>
+            <button type="button" class="dia active" data-dia="5">Sex</button>
+            <button type="button" class="dia active" data-dia="6">Sáb</button>
+          </div>
+        </div>
+
+      </div>
+
+
+      <div class="horarios-box">
+
+        <div class="horarios-header">
+          <strong>Horários</strong>
+
+          <button
+            type="button"
+            class="btn btn-secondary"
+            onclick="adicionarHorario()"
+          >
+            + Adicionar horário
+          </button>
+        </div>
+
+        <div id="horariosList" class="horarios-list"></div>
+
+      </div>
+
+
+      <div class="form-actions">
+
+        <button
+          type="button"
+          class="btn btn-secondary"
+          onclick="cancelarEdicao()"
+        >
+          Cancelar
+        </button>
+
+        <button
+          type="submit"
+          class="btn btn-primary"
+        >
+          Salvar medicamento
+        </button>
+
+      </div>
+
+    </form>
+
+  </section>
+
+
+  <!-- LISTA -->
+
+  <section>
+
+    <div class="section-title">
+      <h2>Meus medicamentos</h2>
+    </div>
+
+    <div id="medicamentosList" class="medicamentos-list"></div>
+
+  </section>
+
+</div>
+
+
+<script>
+
+  let medicamentos = JSON.parse(
+    localStorage.getItem("medicamentos")
+  ) || [];
+
+  let editandoId = null;
+
+  let horarios = ["08:00"];
+
+
+  /*
+   * INICIALIZAÇÃO
+   */
+
+  document.addEventListener("DOMContentLoaded", () => {
+
+    renderHorarios();
+
+    renderMedicamentos();
+
+    atualizarResumo();
+
+    configurarDias();
+
+  });
+
+
+  /*
+   * DIAS DA SEMANA
+   */
+
+  function configurarDias() {
+
+    document.querySelectorAll(".dia").forEach(botao => {
+
+      botao.addEventListener("click", () => {
+        botao.classList.toggle("active");
+      });
+
+    });
+
+  }
+
+
+  function pegarDiasSelecionados() {
+
+    return Array.from(
+      document.querySelectorAll(".dia.active")
+    ).map(botao => Number(botao.dataset.dia));
+
+  }
+
+
+  /*
+   * HORÁRIOS
+   */
+
+  function renderHorarios() {
+
+    const container = document.getElementById("horariosList");
+
+    container.innerHTML = "";
+
+    horarios.forEach((horario, index) => {
+
+      const div = document.createElement("div");
+
+      div.className = "horario-item";
+
+      div.innerHTML = `
+        <input
+          type="time"
+          value="${horario}"
+          onchange="alterarHorario(${index}, this.value)"
+        >
+
+        <button
+          type="button"
+          class="remove-horario"
+          onclick="removerHorario(${index})"
+          title="Remover horário"
+        >
+          ×
+        </button>
+      `;
+
+      container.appendChild(div);
+
+    });
+
+  }
+
+
+  function adicionarHorario() {
+
+    horarios.push("12:00");
+
+    renderHorarios();
+
+  }
+
+
+  function alterarHorario(index, valor) {
+
+    horarios[index] = valor;
+
+  }
+
+
+  function removerHorario(index) {
+
+    if (horarios.length === 1) {
+
+      alert("O medicamento precisa ter pelo menos um horário.");
+
+      return;
+
+    }
+
+    horarios.splice(index, 1);
+
+    renderHorarios();
+
+  }
+
+
+  /*
+   * CADASTRAR / EDITAR
+   */
+
+  document.getElementById("medForm").addEventListener(
+    "submit",
+    function(event) {
+
+      event.preventDefault();
+
+      const nome = document.getElementById("nome").value.trim();
+
+      if (!nome) {
+        alert("Informe o nome do medicamento.");
+        return;
+      }
+
+      if (horarios.length === 0) {
+        alert("Adicione pelo menos um horário.");
+        return;
+      }
+
+      const dias = pegarDiasSelecionados();
+
+      if (dias.length === 0) {
+        alert("Selecione pelo menos um dia da semana.");
+        return;
+      }
+
+
+      const medicamento = {
+
+        id: editandoId || Date.now(),
+
+        nome: nome,
+
+        dosagem:
+          document.getElementById("dosagem").value.trim(),
+
+        forma:
+          document.getElementById("forma").value,
+
+        observacao:
+          document.getElementById("observacao").value.trim(),
+
+        horarios: [...horarios],
+
+        dias: dias,
+
+        registros:
+          editandoId
+            ? medicamentos.find(m => m.id === editandoId)?.registros || {}
+            : {}
+
+      };
+
+
+      if (editandoId) {
+
+        medicamentos = medicamentos.map(m =>
+          m.id === editandoId
+            ? medicamento
+            : m
+        );
+
+      } else {
+
+        medicamentos.push(medicamento);
+
+      }
+
+
+      salvar();
+
+      cancelarEdicao();
+
+      renderMedicamentos();
+
+      atualizarResumo();
+
+    }
+  );
+
+
+  /*
+   * NOVO MEDICAMENTO
+   */
+
+  function novoMedicamento() {
+
+    editandoId = null;
+
+    document.getElementById("formTitulo").textContent =
+      "Cadastrar medicamento";
+
+    document.getElementById("medForm").reset();
+
+    horarios = ["08:00"];
+
+    document.querySelectorAll(".dia").forEach(
+      dia => dia.classList.add("active")
+    );
+
+    renderHorarios();
+
+    document
+      .getElementById("formCard")
+      .scrollIntoView({
+        behavior: "smooth"
+      });
+
+  }
+
+
+  /*
+   * EDITAR
+   */
+
+  function editarMedicamento(id) {
+
+    const med = medicamentos.find(m => m.id === id);
+
+    if (!med) return;
+
+    editandoId = id;
+
+    document.getElementById("formTitulo").textContent =
+      "Editar medicamento";
+
+    document.getElementById("nome").value =
+      med.nome;
+
+    document.getElementById("dosagem").value =
+      med.dosagem || "";
+
+    document.getElementById("forma").value =
+      med.forma || "Comprimido";
+
+    document.getElementById("observacao").value =
+      med.observacao || "";
+
+    horarios = [...med.horarios];
+
+    document.querySelectorAll(".dia").forEach(botao => {
+
+      const dia = Number(botao.dataset.dia);
+
+      botao.classList.toggle(
+        "active",
+        med.dias.includes(dia)
+      );
+
+    });
+
+    renderHorarios();
+
+    document
+      .getElementById("formCard")
+      .scrollIntoView({
+        behavior: "smooth"
+      });
+
+  }
+
+
+  /*
+   * CANCELAR
+   */
+
+  function cancelarEdicao() {
+
+    editandoId = null;
+
+    document.getElementById("formTitulo").textContent =
+      "Cadastrar medicamento";
+
+    document.getElementById("medForm").reset();
+
+    horarios = ["08:00"];
+
+    document.querySelectorAll(".dia").forEach(
+      dia => dia.classList.add("active")
+    );
+
+    renderHorarios();
+
+  }
+
+
+  /*
+   * EXCLUIR
+   */
+
+  function excluirMedicamento(id) {
+
+    const med = medicamentos.find(m => m.id === id);
+
+    if (!med) return;
+
+    const confirmar = confirm(
+      `Deseja excluir o medicamento "${med.nome}"?`
+    );
+
+    if (!confirmar) return;
+
+    medicamentos = medicamentos.filter(
+      m => m.id !== id
+    );
+
+    salvar();
+
+    renderMedicamentos();
+
+    atualizarResumo();
+
+  }
+
+
+  /*
+   * TOMADO / PENDENTE
+   */
+
+  function alternarStatus(
+    medicamentoId,
+    horario
+  ) {
+
+    const hoje = obterDataHoje();
+
+    const med = medicamentos.find(
+      m => m.id === medicamentoId
+    );
+
+    if (!med) return;
+
+    if (!med.registros) {
+      med.registros = {};
+    }
+
+    const chave = `${hoje}_${horario}`;
+
+    med.registros[chave] =
+      !med.registros[chave];
+
+    salvar();
+
+    renderMedicamentos();
+
+    atualizarResumo();
+
+  }
+
+
+  function foiTomado(med, horario) {
+
+    if (!med.registros) return false;
+
+    const chave =
+      `${obterDataHoje()}_${horario}`;
+
+    return med.registros[chave] === true;
+
+  }
+
+
+  /*
+   * RENDERIZA LISTA
+   */
+
+  function renderMedicamentos() {
+
+    const container =
+      document.getElementById("medicamentosList");
+
+    container.innerHTML = "";
+
+
+    if (medicamentos.length === 0) {
+
+      container.innerHTML = `
+        <div class="empty">
+          <div class="emoji">💊</div>
+
+          <h3>Nenhum medicamento cadastrado</h3>
+
+          <p>
+            Cadastre seu primeiro medicamento para
+            começar a controlar os horários.
+          </p>
+        </div>
+      `;
+
+      return;
+
+    }
+
+
+    medicamentos.forEach(med => {
+
+      const card =
+        document.createElement("div");
+
+      card.className = "med-card";
+
+
+      const doses = med.horarios
+        .sort()
+        .map(horario => {
+
+          const tomado =
+            foiTomado(med, horario);
+
+          return `
+
+            <div class="dose">
+
+              <div class="dose-info">
+
+                <strong>⏰ ${horario}</strong>
+
+                <span>
+                  ${tomado
+                    ? "Dose tomada"
+                    : "Dose pendente"}
+                </span>
+
+              </div>
+
+              <button
+                class="status-btn ${
+                  tomado
+                    ? "status-tomado"
+                    : "status-pendente"
+                }"
+                onclick="alternarStatus(
+                  ${med.id},
+                  '${horario}'
+                )"
+              >
+                ${
+                  tomado
+                    ? "✓ Tomado"
+                    : "⏳ Pendente"
+                }
+              </button>
+
+            </div>
+
+          `;
+
+        })
+        .join("");
+
+
+      card.innerHTML = `
+
+        <div class="med-top">
+
+          <div class="med-info">
+
+            <h3>
+              💊 ${escaparHTML(med.nome)}
+            </h3>
+
+            <p>
+              ${escaparHTML(med.dosagem || "Sem dosagem")}
+              •
+              ${escaparHTML(med.forma || "")}
+            </p>
+
+            ${
+              med.observacao
+                ? `
+                  <p style="margin-top:8px">
+                    📝 ${escaparHTML(med.observacao)}
+                  </p>
+                `
+                : ""
+            }
+
+          </div>
+
+
+          <div class="med-actions">
+
+            <button
+              class="icon-btn"
+              onclick="editarMedicamento(${med.id})"
+              title="Editar"
+            >
+              ✏️
+            </button>
+
+            <button
+              class="icon-btn"
+              onclick="excluirMedicamento(${med.id})"
+              title="Excluir"
+            >
+              🗑️
+            </button>
+
+          </div>
+
+        </div>
+
+
+        <div class="dose-list">
+
+          ${doses}
+
+        </div>
+
+      `;
+
+
+      container.appendChild(card);
+
+    });
+
+  }
+
+
+  /*
+   * RESUMO
+   */
+
+  function atualizarResumo() {
+
+    document.getElementById(
+      "totalMedicamentos"
+    ).textContent = medicamentos.length;
+
+
+    let tomados = 0;
+
+    let pendentes = 0;
+
+    let proximo = null;
+
+    const agora = new Date();
+
+    const horaAtual =
+      agora.getHours() * 60 +
+      agora.getMinutes();
+
+
+    medicamentos.forEach(med => {
+
+      med.horarios.forEach(horario => {
+
+        if (foiTomado(med, horario)) {
+
+          tomados++;
+
+        } else {
+
+          pendentes++;
+
+          const [h, m] =
+            horario.split(":").map(Number);
+
+          const minutos =
+            h * 60 + m;
+
+          if (
+            minutos >= horaAtual &&
+            (proximo === null ||
+             minutos < proximo.minutos)
+          ) {
+
+            proximo = {
+              minutos,
+              horario
+            };
+
+          }
+
+        }
+
+      });
+
+    });
+
+
+    document.getElementById(
+      "totalTomados"
+    ).textContent = tomados;
+
+
+    document.getElementById(
+      "totalPendentes"
+    ).textContent = pendentes;
+
+
+    document.getElementById(
+      "proximoHorario"
+    ).textContent =
+      proximo
+        ? proximo.horario
+        : "--:--";
+
+  }
+
+
+  /*
+   * DATA
+   */
+
+  function obterDataHoje() {
+
+    const hoje = new Date();
+
+    const ano = hoje.getFullYear();
+
+    const mes =
+      String(hoje.getMonth() + 1)
+        .padStart(2, "0");
+
+    const dia =
+      String(hoje.getDate())
+        .padStart(2, "0");
+
+    return `${ano}-${mes}-${dia}`;
+
+  }
+
+
+  /*
+   * LOCAL STORAGE
+   */
+
+  function salvar() {
+
+    localStorage.setItem(
+      "medicamentos",
+      JSON.stringify(medicamentos)
+    );
+
+  }
+
+
+  /*
+   * SEGURANÇA PARA TEXTO
+   */
+
+  function escaparHTML(texto) {
+
+    return String(texto)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#039;");
+
+  }
+
+</script>
+
+</body>
+</html>

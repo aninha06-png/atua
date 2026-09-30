@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Mediplanner - Dashboard do Idoso</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header class="header">
+
+    <div class="logo">
+        <span>♥</span> Mediplanner
+    </div>
+
+    <nav class="menu">
+        <a href="index.html">Início</a>
+        <a href="idoso.html" class="ativo">Idoso</a>
+        <a href="cuidador.html">Cuidador</a>
+        <a href="consultas.html">Consultas</a>
+        <a href="medicamentos.html">Medicamentos</a>
+    </nav>
+
+</header>
+
+
+<main class="dashboard">
+
+    <!-- CABEÇALHO DO DASHBOARD -->
+
+    <section class="dashboard-top">
+
+        <div>
+            <span class="tag">Área do Idoso</span>
+
+            <h1>Olá, Francisco! 👋</h1>
+
+            <p>
+                Aqui está um resumo da sua rotina de cuidados.
+            </p>
+        </div>
+
+        <div class="data-atual">
+            <span>Hoje</span>
+            <strong>26 de agosto</strong>
+        </div>
+
+    </section>
+
+
+    <!-- RESUMO -->
+
+    <section class="resumo-grid">
+
+        <div class="resumo-card azul">
+
+            <div class="resumo-icone">
+                📅
+            </div>
+
+            <div>
+                <span>Próxima consulta</span>
+
+                <strong>28 Ago</strong>
+
+                <small>Cardiologista - 09:00</small>
+            </div>
+
+        </div>
+
+
+        <div class="resumo-card verde">
+
+            <div class="resumo-icone">
+                💊
+            </div>
+
+            <div>
+                <span>Medicamentos hoje</span>
+
+                <strong>3</strong>
+
+                <small>2 pendentes</small>
+            </div>
+
+        </div>
+
+
+        <div class="resumo-card roxo">
+
+            <div class="resumo-icone">
+                ❤️
+            </div>
+
+            <div>
+                <span>Cuidados</span>
+
+                <strong>85%</strong>
+
+                <small>Rotina em dia</small>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- CONTEÚDO PRINCIPAL -->
+
+    <section class="dashboard-grid">
+
+
+        <!-- MEDICAMENTOS -->
+
+        <div class="painel">
+
+            <div class="painel-header">
+
+                <div>
+                    <h2>Medicamentos de hoje</h2>
+
+                    <p>
+                        Confira seus horários.
+                    </p>
+                </div>
+
+                <a href="medicamentos.html">
+                    Ver todos
+                </a>
+
+            </div>
+
+
+            <div class="medicamento-item">
+
+                <div class="item-icone">
+                    💊
+                </div>
+
+                <div class="item-info">
+                    <strong>Losartana</strong>
+                    <span>50 mg</span>
+                </div>
+
+                <div class="item-horario">
+                    <strong>08:00</strong>
+                    <span>Manhã</span>
+                </div>
+
+                <button
+                    class="status-btn pendente"
+                    onclick="marcarMedicamento(this)">
+                    Pendente
+                </button>
+
+            </div>
+
+
+            <div class="medicamento-item">
+
+                <div class="item-icone">
+                    💊
+                </div>
+
+                <div class="item-info">
+                    <strong>Metformina</strong>
+                    <span>500 mg</span>
+                </div>
+
+                <div class="item-horario">
+                    <strong>12:00</strong>
+                    <span>Almoço</span>
+                </div>
+
+                <button
+                    class="status-btn pendente"
+                    onclick="marcarMedicamento(this)">
+                    Pendente
+                </button>
+
+            </div>
+
+
+            <div class="medicamento-item">
+
+                <div class="item-icone">
+                    💊
+                </div>
+
+                <div class="item-info">
+                    <strong>Sinvastatina</strong>
+                    <span>20 mg</span>
+                </div>
+
+                <div class="item-horario">
+                    <strong>20:00</strong>
+                    <span>Noite</span>
+                </div>
+
+                <button
+                    class="status-btn tomado"
+                    onclick="marcarMedicamento(this)">
+                    Tomado
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- PRÓXIMA CONSULTA -->
+
+        <div class="painel consulta-painel">
+
+            <div class="painel-header">
+
+                <div>
+                    <h2>Próxima consulta</h2>
+
+                    <p>
+                        Seu próximo compromisso.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="consulta-data">
+
+                <div class="calendario">
+
+                    <span>AGO</span>
+
+                    <strong>28</strong>
+
+                </div>
+
+
+                <div>
+
+                    <h3>Consulta Cardiológica</h3>
+
+                    <p>Dr. sei la algum nome</p>
+
+                    <p>📍 onde tiver leito</p>
+
+                    <p>🕘 06:07</p>
+
+                </div>
+
+            </div>
+
+
+            <a
+                href="consultas.html"
+                class="botao principal botao-largo">
+
+                Ver detalhes da consulta
+
+            </a>
+
+        </div>
+
+
+    </section>
+
+
+    <!-- ACESSO RÁPIDO -->
+
+    <section class="acesso-rapido">
+
+        <div class="titulo-dashboard">
+
+            <h2>Acesso rápido</h2>
+
+            <p>
+                Encontre rapidamente o que precisa.
+            </p>
+
+        </div>
+
+
+        <div class="acoes-grid">
+
+            <a href="consultas.html" class="acao-card">
+
+                <span>📅</span>
+
+                <div>
+                    <strong>Minhas consultas</strong>
+
+                    <small>
+                        Ver compromissos
+                    </small>
+                </div>
+
+                <b>→</b>
+
+            </a>
+
+
+            <a href="medicamentos.html" class="acao-card">
+
+                <span>💊</span>
+
+                <div>
+                    <strong>Medicamentos</strong>
+
+                    <small>
+                        Ver horários
+                    </small>
+                </div>
+
+                <b>→</b>
+
+            </a>
+
+
+            <a href="cuidador.html" class="acao-card">
+
+                <span>👩‍⚕️</span>
+
+                <div>
+                    <strong>Meu cuidador</strong>
+
+                    <small>
+                        Informações
+                    </small>
+                </div>
+
+                <b>→</b>
+
+            </a>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<footer class="footer">
+
+    <div class="logo">
+        <span>♥</span> Mediplanner
+    </div>
+
+    <p>
+        Seu cuidado em um só lugar.
+    </p>
+
+</footer>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>

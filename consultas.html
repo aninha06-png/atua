@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+<head>
+
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>Mediplanner - Consultas</title>
+
+<link rel="stylesheet" href="style.css">
+
+
+</head>
+
+<body>
+
+<header class="header">
+
+
+<div class="logo">
+    <span>♥</span> Mediplanner
+</div>
+
+<nav class="menu">
+
+    <a href="index.html">
+        Início
+    </a>
+
+    <a href="idoso.html">
+        Idoso
+    </a>
+
+    <a href="cuidador.html">
+        Cuidador
+    </a>
+
+    <a href="consultas.html" class="ativo">
+        Consultas
+    </a>
+
+    <a href="medicamentos.html">
+        Medicamentos
+    </a>
+
+</nav>
+
+
+</header>
+
+<main>
+
+<section class="secao">
+
+
+<div class="titulo-secao">
+
+    <span class="tag">
+        Consultas
+    </span>
+
+    <h2>
+        Próximas consultas
+    </h2>
+
+    <p>
+        Cadastre e acompanhe os compromissos médicos.
+    </p>
+
+</div>
+
+
+<!-- FORMULÁRIO DE CADASTRO -->
+
+<div class="card">
+
+    <h3>
+        Cadastrar consulta
+    </h3>
+
+    <form id="formConsulta" onsubmit="event.preventDefault(); cadastrarConsulta();">
+
+        <div class="campo">
+
+            <label for="dataConsulta">
+                Data
+            </label>
+
+            <input
+                type="date"
+                id="dataConsulta"
+                required
+            >
+
+        </div>
+
+
+        <div class="campo">
+
+            <label for="horaConsulta">
+                Horário
+            </label>
+
+            <input
+                type="time"
+                id="horaConsulta"
+                required
+            >
+
+        </div>
+
+
+        <div class="campo">
+
+            <label for="medicoConsulta">
+                Médico
+            </label>
+
+            <input
+                type="text"
+                id="medicoConsulta"
+                placeholder="Nome do médico"
+                required
+            >
+
+        </div>
+
+
+        <div class="campo">
+
+            <label for="especialidadeConsulta">
+                Especialidade
+            </label>
+
+            <input
+                type="text"
+                id="especialidadeConsulta"
+                placeholder="Ex.: Cardiologia"
+                required
+            >
+
+        </div>
+
+
+        <div class="campo">
+
+            <label for="observacoesConsulta">
+                Observações
+            </label>
+
+            <textarea
+                id="observacoesConsulta"
+                placeholder="Digite alguma observação..."
+                rows="4"
+            ></textarea>
+
+        </div>
+
+
+        <button
+            type="submit"
+            class="botao"
+        >
+            Cadastrar consulta
+        </button>
+
+    </form>
+
+</div>
+
+
+<!-- LISTA DE CONSULTAS -->
+
+<div class="titulo-secao">
+
+    <h2>
+        Consultas cadastradas
+    </h2>
+
+</div>
+
+
+<div
+    class="cards"
+    id="listaConsultas"
+>
+
+    <div class="card">
+
+        <div class="card-icone roxo">
+            📅
+        </div>
+
+        <h3>
+            Nenhuma consulta cadastrada
+        </h3>
+
+        <p>
+            Quando uma consulta for cadastrada,
+            ela aparecerá aqui.
+        </p>
+
+    </div>
+
+</div>
+
+
+</section>
+
+</main>
+
+<footer class="footer">
+
+
+<div class="logo">
+    <span>♥</span> Mediplanner
+</div>
+
+<p>
+    Seu cuidado em um só lugar.
+</p>
+
+
+</footer>
+
+<script src="script.js"></script>
+
+</body>
+</html>
